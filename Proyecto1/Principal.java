@@ -3,13 +3,13 @@ import java.util.ArrayList;
 import java.util.Scanner;
 public class Principal {
 
-    // Enum para definir los roles
+    
     public enum Rol {
         ADMINISTRADOR,
         EMPLEADO
     }
 
-    // Clase para representar a un usuario
+    
     public static class Usuario {
         private String usuario;
         private String contrasena;
@@ -33,7 +33,7 @@ public class Principal {
             return rol;
         }
     }
-    // Método para verificar las credenciales de inicio de sesión
+    
     public static Usuario iniciarSesion() {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Ingrese el nombre de usuario: ");
@@ -41,7 +41,7 @@ public class Principal {
         System.out.print("Ingrese la contraseña: ");
         String contrasena = scanner.nextLine();
 
-        // Verificar credenciales
+        
         for (Usuario usuarioRegistrado : usuariosRegistrados) {
             if (usuario.equals(usuarioRegistrado.getUsuario()) && contrasena.equals(usuarioRegistrado.getContrasena())) {
                 System.out.println("Inicio de sesión exitoso. Bienvenido!");
@@ -53,23 +53,22 @@ public class Principal {
         return null;
     }
 
-    // Lista de usuarios registrados
+    
     private static List<Usuario> usuariosRegistrados = new ArrayList<>();
 
-    // Inicializar usuarios registrados
+    
     static {
         usuariosRegistrados.add(new Usuario("admin", "1234", Rol.ADMINISTRADOR));
         usuariosRegistrados.add(new Usuario("empleado", "1234", Rol.EMPLEADO));
     }
 
     public static void main(String[] args) {
-        // Verificar el inicio de sesión
+        
         Usuario usuario = iniciarSesion();
         if (usuario == null) {
-            return; // Salir del programa si las credenciales no son correctas
+            return;
         }
 
-        // Si el inicio de sesión es exitoso, continuar con las operaciones del inventario
         Inventario inventario = new Inventario();
         Scanner scanner = new Scanner(System.in);
 
@@ -85,7 +84,7 @@ public class Principal {
             }
 
             int opcion = scanner.nextInt();
-            scanner.nextLine(); // Consumir la nueva línea
+            scanner.nextLine(); 
 
             switch (opcion) {
                 case 1:
@@ -116,7 +115,6 @@ public class Principal {
                 case 3:
                 System.out.print("Ingrese codigo del producto: ");
                     String codigoEliminar = scanner.nextLine();
-
                     inventario.eliminarProducto(codigoEliminar);
                     System.out.println("producto eliminado con exito!!!");
                     break;
